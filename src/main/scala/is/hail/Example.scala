@@ -24,5 +24,6 @@ object Example {
       .execute()
       .getValues()
       .asScala
+    println(theData)
   }
 }
