@@ -1,6 +1,7 @@
 package is.hail
 
 import com.google.auth.oauth2.ServiceAccountCredentials
+import com.google.auth.http.HttpCredentialsAdapter
 import com.google.api.client.auth.oauth2.Credential
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.json.gson.GsonFactory
@@ -16,8 +17,9 @@ object Example {
   val sheetsService = new Sheets.Builder(httpTransport, gsonFactory, new HttpCredentialsAdapter(credentials))
     .setApplicationName("Hail!")
     .build()
+
   def main(args: Array[String]) {
-    val theData = service.spreadsheets().values()
+    val theData = sheetsService.spreadsheets().values()
       .get("spreadsheet id", "sheet name")
       .execute()
       .getValues()
